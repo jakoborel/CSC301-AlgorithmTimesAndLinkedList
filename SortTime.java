@@ -90,14 +90,14 @@ public class SortTime{
         long endTime = System.nanoTime();
         return endTime-startTime;
     }
-
+    //returns elapsed time in nanoseconds for intArray using quickSort of size n
     private static long quickSortTime(int array[]){
         long startTime = System.nanoTime();
         quickSort(array, 0, array.length - 1);
         long endTime = System.nanoTime();
         return endTime-startTime;
     }
-
+    //returns the average elapsed time in nanosecons for 100 quickSorts of size n
     private static long quickSortAverageTime(int n){
         long array[] = new long[100];
         for(int i = 0; i < 100; i++)
@@ -105,7 +105,7 @@ public class SortTime{
 
         return arrayAverage(array);
     }
-
+    //returns the average elaped time in nanosecons for 100 mergeSorts of size n
     private static long mergeSortAverageTime(int n){
         long array[] = new long[100];
         for(int i = 0; i < 100; i++)
@@ -113,7 +113,7 @@ public class SortTime{
 
         return arrayAverage(array);
     }
-
+    //returns the average of the elements in a long array
     private static long arrayAverage(long array[]){
         long total = 0;
         for(int i = 0; i < array.length; i++)
