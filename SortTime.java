@@ -1,7 +1,6 @@
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
-
 public class SortTime{
     private static int partition(int intArray[], int p, int r){
         int x = intArray[r];
@@ -18,7 +17,7 @@ public class SortTime{
         intArray[i + 1] = x;
         return i + 1;
     }
-    
+
     private static void quickSort(int intArray[], int p, int r){
         if(p<r){
             int pivot = partition(intArray, p, r);
@@ -26,7 +25,7 @@ public class SortTime{
             quickSort(intArray, pivot + 1, r);
         }
     }
-    
+
     private static void merge(int intArray[], int low, int mid, int high){
         int leftLength = (mid-low)+ 1;
         int rightLength = high-mid;
@@ -81,7 +80,6 @@ public class SortTime{
         for(int i=0; i<array.length;i++){
             randomInteger = random.nextInt();
             array[i]=randomInteger;
-            System.out.println(array[i]);
         }
         return array;
     }
@@ -92,7 +90,7 @@ public class SortTime{
         long endTime = System.nanoTime();
         return endTime-startTime;
     }
-    
+
     private static long quickSortTime(int array[]){
         long startTime = System.nanoTime();
         quickSort(array, 0, array.length - 1);
@@ -100,42 +98,56 @@ public class SortTime{
         return endTime-startTime;
     }
 
+    private static long quickSortAverageTime(int n){
+        long array[] = new long[100];
+        for(int i = 0; i < 100; i++)
+            array[i] = quickSortTime(fillRandom(n));
+
+        return arrayAverage(array);
+    }
+
+    private static long mergeSortAverageTime(int n){
+        long array[] = new long[100];
+        for(int i = 0; i < 100; i++)
+            array[i] = mergeSortTime(fillRandom(n));
+
+        return arrayAverage(array);
+    }
+
+    private static long arrayAverage(long array[]){
+        long total = 0;
+        for(int i = 0; i < array.length; i++)
+            total += array[i];
+
+        return total / (long)array.length;
+    }
+
     public static void main(String[] args){
-        int oneHundred[] = fillRandom(100);
-        //int oneThousand[] = fillRandom(1000);
-        //int tenThousand[] = fillRandom(10000);
-        //int hundredThousand[] = fillRandom(100000);
-        //int oneMillion[] = fillRandom(1000000);
-
-        long oneHundredQuickTime = quickSortTime(oneHundred);
-        long oneHundredMergeTime = mergeSortTime(oneHundred);
-
-        //long oneThousandQuickTime = quickSortTime(oneThousand);
-        //long oneThousandMergeTime = mergeSortTime(oneThousand);
-
-        //long tenThousandQuickTime = quickSortTime(oneThousand);
-        //long tenThousandMergeTime = mergeSortTime(tenThousand);
+        int[] array;
+        long quickTime;
+        long mergeTime;
+        for(int i = 0; i <= 6; i++){
+            array = fillRandom((int)Math.pow(10, i));
+            quickTime = quickSortTime(array);
+            mergeTime = mergeSortTime(array);
+            System.out.print("Elapsed time in milliseconds for QuickSort (n="+ (int)Math.pow(10, i) +"): ");
+            System.out.format("%.4f\n", quickTime/(double)1000000);
+            System.out.print("Elapsed time in milliseconds for MergeSort (n="+ (int)Math.pow(10, i)+")): ");
+            System.out.format("%.4f\n", mergeTime/(double)1000000);
+        }
         
-        //long hundredThousandQuickTime = quickSortTime(hundredThousand);
-        //long hundredThousandMergeTime = mergeSortTime(hundredThousand);
-        
-        //long oneMillionQuickTime = quickSortTime(oneMillion);
-        //long oneMillionMergeTime = mergeSortTime(oneMillion);
-        
-        System.out.println("Elapsed time in milliseconds for QuickSort (n=100): " + oneHundredQuickTime/(double)1000000);
-        System.out.println("Elapsed time in milliseconds for MergeSort (n=100): " + oneHundredMergeTime/(double)1000000);
+        /* //For finding averages
+        long averageQuickTime;
+        long averageMergeTime;
+        for(int i = 0; i <= 6; i++){
+            averageQuickTime = quickSortAverageTime((int)Math.pow(10, i));
+            averageMergeTime = mergeSortAverageTime((int)Math.pow(10, i));
 
-        //System.out.println("Elapsed time in milliseconds for QuickSort (n=1000): " + oneThousandQuickTime/(double)100000);
-        //System.out.println("Elapsed time in milliseconds for MergeSort (n=1000): " + oneThousandMergeTime/(double)1000000);
-
-        //System.out.println("Elapsed time in milliseconds for QuickSort (n=10000): " + tenThousandQuickTime/(double)1000000);
-        //System.out.println("Elapsed time in milliseconds for MergeSort (n=10000): " + tenThousandMergeTime/(double)1000000);
-        
-        //System.out.println("Elapsed time in milliseconds for QuickSort (n=100000): " + hundredThousandQuickTime/(double)1000000);
-        //System.out.println("Elapsed time in milliseconds for MergeSort (n=100000): " + hundredThousandMergeTime/(double)1000000);
-
-        //System.out.println("Elapsed time in milliseconds for QuickSort (n=1000000): " + oneMillionQuickTime/(double)1000000);
-        //System.out.println("Elapsed time in milliseconds for MergeSort (n=1000000): " + oneMillionMergeTime/(double)1000000);
-
+            System.out.print("Average elapsed time in milliseconds for QuickSort (n="+ (int)Math.pow(10, i) +"): ");
+            System.out.format("%.4f\n", averageQuickTime/(double)1000000);
+            System.out.print("Average elapsed time in milliseconds for MergeSort (n="+ (int)Math.pow(10, i)+")): ");
+            System.out.format("%.4f\n", averageMergeTime/(double)1000000);
+        }
+        */
     }
 }
