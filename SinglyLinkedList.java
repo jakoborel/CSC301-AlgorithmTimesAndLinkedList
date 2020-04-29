@@ -36,7 +36,7 @@ public class SinglyLinkedList<T>
         if(this.isEmpty()){
             head = newNode;
         }
-        else{  
+        else{
             tail.setNext(newNode);
         }
 
@@ -113,7 +113,7 @@ public class SinglyLinkedList<T>
         }
     }
 
-    public boolean contain(T item){
+    public boolean contains(T item){
         return this.search(item) != null;
     }
 
@@ -149,7 +149,7 @@ public class SinglyLinkedList<T>
     public static void main(String[] args){
         //testing
         try{
-            SinglyLinkedList<Integer> numList = new SinglyLinkedList<Integer>(); 
+            SinglyLinkedList<Integer> numList = new SinglyLinkedList<Integer>();
 
             numList.addFirst(5);
             numList.addFirst(4);
@@ -170,19 +170,24 @@ public class SinglyLinkedList<T>
 
             numList.removeLast();
 
-            numList.printList();            
+            numList.printList();
 
             System.out.println("---------------------");
-            
+
             numList.removeFirst();
-            
+
             numList.printList();
-            
+
             System.out.println("---------------------");
-            
-            numList.remove(10);
-            
+
+            numList.remove(9);
+
             numList.printList();
+
+            System.out.println("---------------------");
+
+            System.out.println("Does the list contain 5? " + numList.contains(5));
+            System.out.println("Size of list: " + numList.size());
         }
         catch(Exception e){
             System.out.println();
