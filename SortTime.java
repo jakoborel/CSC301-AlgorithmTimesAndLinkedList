@@ -136,18 +136,5 @@ public class SortTime{
             System.out.format("%.4f\n", mergeTime/(double)1000000);
         }
         
-        /* //For finding averages
-        long averageQuickTime;
-        long averageMergeTime;
-        for(int i = 0; i <= 6; i++){
-            averageQuickTime = quickSortAverageTime((int)Math.pow(10, i));
-            averageMergeTime = mergeSortAverageTime((int)Math.pow(10, i));
-
-            System.out.print("Average elapsed time in milliseconds for QuickSort (n="+ (int)Math.pow(10, i) +"): ");
-            System.out.format("%.4f\n", averageQuickTime/(double)1000000);
-            System.out.print("Average elapsed time in milliseconds for MergeSort (n="+ (int)Math.pow(10, i)+")): ");
-            System.out.format("%.4f\n", averageMergeTime/(double)1000000);
-        }
-        */
     }
 }
