@@ -36,12 +36,8 @@ public class SinglyLinkedList<T>
         if(this.isEmpty()){
             head = newNode;
         }
-        else{
-            ListNode<T> temp = head;
-            for(int i = 0; i < nodeCount - 1; i++)
-                temp = temp.getNext();
-
-            temp.setNext(newNode);
+        else{  
+            tail.setNext(newNode);
         }
 
         tail = newNode;
@@ -151,7 +147,7 @@ public class SinglyLinkedList<T>
     }
 
     public static void main(String[] args){
-        //testin
+        //testing
         try{
             SinglyLinkedList<Integer> numList = new SinglyLinkedList<Integer>(); 
 
@@ -174,6 +170,18 @@ public class SinglyLinkedList<T>
 
             numList.removeLast();
 
+            numList.printList();            
+
+            System.out.println("---------------------");
+            
+            numList.removeFirst();
+            
+            numList.printList();
+            
+            System.out.println("---------------------");
+            
+            numList.remove(10);
+            
             numList.printList();
         }
         catch(Exception e){
